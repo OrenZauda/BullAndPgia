@@ -6,7 +6,7 @@
 using namespace std;
 using std::string;
 namespace bullpgia{
-    class SmartGuesser:public Guesser{
+    class SmartGuesser:public bullpgia::Guesser{
         public:
        string _choose;
        SmartGuesser();
