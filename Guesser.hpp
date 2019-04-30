@@ -13,11 +13,12 @@ private:
 public:
     uint length;
 
-    Guesser() {}
+    Guesser() {
+           cout<< "*****"<< endl;
+    }
 
     Guesser(const string &guess)
     {
-        cout<< "*****"<< endl;
         _guess = guess;
         length = guess.length();
     }
