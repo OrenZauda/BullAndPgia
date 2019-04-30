@@ -1,3 +1,4 @@
+authors: Avichay Avtai Nega, Omer Hadida Arad and Oren Zauda
 # BullAndPgia
 
 In this task we will learn about a design model called "strategy," which is one of the main uses of the inheritance mechanism.
