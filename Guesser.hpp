@@ -14,7 +14,8 @@ public:
     uint length;
 
     Guesser() {
-           cout<< "*****"<< endl;
+    _guess="0011";
+     length = 4;
     }
 
     Guesser(const string &guess)
