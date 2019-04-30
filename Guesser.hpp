@@ -16,6 +16,7 @@ public:
 
     Guesser(const string &guess)
     {
+        cout<< "*****"<< endl;
         _guess = guess;
         length = guess.length();
     }
