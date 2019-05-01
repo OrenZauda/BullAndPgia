@@ -26,7 +26,7 @@ int main() {
 	if (signal == 0) {
 
 		// BASIC TESTS - DO NOT CHANGE
-		ConstantChooser c1234{"1234"}, c12345{"12345"}, c9999{"9999"},c123{"123"},c0876{"0876"},c0954{"0954"},c0321{"0321"},c8905{"8905"};
+		ConstantChooser c1234{"1234"}, c12345{"12345"}, c9999{"9999"},c123{"123"},c0876{"0876"},c0954{"0954"},c0321{"0321"},c8905{"8905"},c123335{"123335"},c123245{"123245"};
 		ConstantGuesser g1234{"1234"}, g12345{"12345"}, g9999{"9999"},g123{"123"},g0954{"0954"},g8905{"8905"};
 
 		testcase.setname("Calculate bull and pgia")
@@ -48,8 +48,7 @@ int main() {
 		.CHECK_EQUAL(play(c12345, g1234, 4, 100), 0)//our test
 		.CHECK_EQUAL(play(c123335, g1234, 4, 100), 0)
 		.CHECK_EQUAL(play(c123245, g1234, 4, 100), 0)
-		.CHECK_EQUAL(play(c120345, g1234, 4, 100), 0)
-		.CHECK_EQUAL(play(c123455, g1234, 4, 100), 0)
+		.CHECK_EQUAL(play(c12345, g123, 3, 100), 0)
 		.CHECK_EQUAL(play(c123, g123, 3, 100), 1)
 		.CHECK_EQUAL(play(c0876, g1234, 4, 100), 101)
 		.CHECK_EQUAL(play(c0954, g0954, 4, 100), 1)
