@@ -21,44 +21,6 @@ SmartGuesser::SmartGuesser()
 // basic finction
 string SmartGuesser::guess()
 {
-    //  printf("x-----------------------------------------------------x\n");
-    //   printf("|     Welcome to mastermind-solver demonstration!     |\n");
-    //   printf("x-----------------------------------------------------x\n\n");
-
-    //   printf("Enter number of colors: ");
-    //   int m = inputCP(6); // {0,1,2,3,4,5} = 6 colors, 10 is maximum
-    //   printf("Enter number of places: ");
-    //   int p = inputCP(4); // 0052 = 4 places (digits), higher is slower
-
-    //   printf("\nNow playing with %i colors and %i places\n", m, p);
-
-    //   long length = pow(m, p); // 6^4 possibilities
-
-    //   // Initialization of possibilities
-    //   bool active[length]; // array of booleans to exclude in next search
-    //   long b[length];
-    //   initArrayFromZero(b, length, m);
-
-    //   printf("Initialized %li possibilities\n", length);
-    //   printf("Array tail: ");
-    //   for (int i = 5; i > 0; i--) {
-    //     printf("%li ", b[length - i]);
-    //   }
-    //   printf("\n");
-    //   if (length > MINIMAX_TURNOFF) {
-    //     printf("[i] Minimax is partly turned off to increase speed\n");
-    //   }
-
-    // Handle input
-    //   long input;
-    //   printf("\nEnter your combination:\n");
-    //   scanf("%li", &input);
-    //   while (!handleInput(input, m, p)) {
-    //     printf("[!] Wrong code format, check number of colors and places, then "
-    //            "enter code again:\n");
-    //     scanf("%li", &input);
-    //   }
-
     // According to the Donald Knuth's 5-steps algorithm, first guess should be
     // 1122 (or 0011 in our system) for 4 places,
     // which is minimax number at start. You can change it to number you want or
@@ -66,9 +28,6 @@ string SmartGuesser::guess()
     // So we generate first code according to number of places,
     // e.g. 111222 for p=6 (000111 in our system)
     long teste = 0;
-    //   for (int i = 0; i < p/2; i++) {
-    //     teste += 1*pow(10,i);
-    //   }
     if (start)
     {
         _guess = "";
@@ -80,15 +39,7 @@ string SmartGuesser::guess()
                 _guess = _guess + '1';
         }
     }
-
-    // for (long i = 0; i < length; i++) {
-    //   active[i] = 1;
-    // }
-    // long teste = minimax(b, length, active, p);
-
-    //   for (int krok = 1; krok <= 10; krok++) {
-
-    // printf("\n[%i] Testing code %li\n", krok, teste);
+    
     if (start)
     {
         start = false;
@@ -96,35 +47,10 @@ string SmartGuesser::guess()
     }
 
     int r = responsePegs;
-    // Result is numbers of white and black pegs (hits) for
-    // current test code (teste now)
-    // printf("result %i\n",r);
-    // Game lost if number of guesses exceeds 10
-    // Cycle breaks if the code is found (p*10 stands for p black pegs and 0
-    // whites)
     if (r == p * 10)
     {
-        //   printResult(teste);
         return "";
     }
-
-    // printf("    It's not an answer!");
-    // if (krok == 10) {
-    //   printf("\n\nWe lost.\n");
-    //   return 0;
-    // }
-
-    // printf(" Searching numbers to choose from ");
-    // if (krok == 1)
-    //   printf("all");
-    // else
-    //   printf("%li", countActive(active, length));
-    // printf(" active..\n    Excluding (%li, %i ...)\n", teste, r);
-
-    // if (start)
-
-    // else
-    //   excludeNumbersWithSameCode(teste, r, b, length, active, p);
    
     long newTeste;
     if (countActive(active, pow(m,p)) < MINIMAX_TURNOFF)
