@@ -1,6 +1,5 @@
 #pragma once
 #include <string>
-#include <iostream>
 using namespace std;
 
 namespace bullpgia
@@ -9,14 +8,12 @@ class Guesser
 {
 private:
     string _guess;
+    string _learn;
 
 public:
     uint length;
 
-    Guesser() {
-    _guess="0011";
-     length = 4;
-    }
+    Guesser() {}
 
     Guesser(const string &guess)
     {
@@ -24,19 +21,21 @@ public:
         length = guess.length();
     }
 
-    void startNewGame(uint length)
+    virtual void startNewGame(uint length)
     {
-        length--;
+        return;
     }
 
     virtual string guess()
     {
-        return _guess;
+        
+        return " ";
     }
 
-    void learn(string reply)
+    virtual void learn(string reply)
     {
         return;
+        
     }
 };
 }; // namespace bullpgia
