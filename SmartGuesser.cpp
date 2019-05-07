@@ -22,7 +22,7 @@ SmartGuesser::SmartGuesser()
 string SmartGuesser::guess()
 {
     
-    long teste = -1;
+    long teste = 0;
     
     if (start)
     {
@@ -34,53 +34,59 @@ string SmartGuesser::guess()
             else
                 _guess = _guess + '1';
         }
+    }
 
-     start = false;
+    if (start)
+    {
+        start = false;
         return _guess;
     }
 
-
     int r = responsePegs;
    
-    // if (r == p * 10)
-    // {
-    //     return "";
-    // }
+    if (r == p * 10)
+    {
+        return "";
+    }
 
    
     long newTeste;
-    // if (countActive(active, pow(m,p)) < MINIMAX_TURNOFF)
-    // {
-    //     // Apply the minimax rule to select next code to test
-    //     //   printf("    Applying minimax...\n");
-    //     newTeste = minimax(b, pow(m,p), active, p);
-    // }
-    // else
-    // {
+//     if (countActive(active, pow(m,p)) > MINIMAX_TURNOFF)
+//     {
+        // Apply the minimax rule to select next code to test
+        //   printf("    Applying minimax...\n");
+//         newTeste = minimax(b, pow(m,p), active, p);
+//     }
+//     else
+//     {
         // Turn off minimax for big numbers to increase speed,
         // but will need more steps
-        newTeste = firstActive();
-    // }
+        newTeste = firstActive(b, pow(m,p), active, p);
+//     }
 
-    // if (newTeste == teste)
-    // {
-    //     //   printf("\n[E] Opps, got into an infinite loop, please report to "
-    //     //          "author\nExiting immediately\n");
-    //     return "8";
-    // }
+//     if (newTeste == teste)
+//     {
+//         //   printf("\n[E] Opps, got into an infinite loop, please report to "
+//         //          "author\nExiting immediately\n");
+//         return "8";
+//     }
     
-     
-    _guess = to_string(newTeste);
+    teste = newTeste;
+    _guess = to_string(teste);
+    cout << " ********"<<_guess<<endl;
     complete(_guess);
+     cout << " #########"<<_guess<<endl;
+
     return _guess;
     //   }
 }
 void SmartGuesser::complete(string guess)
-{
+{ cout << "p"<<p<<endl;
+ string y="";
     for(int i=guess.length();i<p;i++){
-        _guess="0"+guess;
+        y="0"+y;
     }
-
+    _guess=y+_guess;
 }
 void SmartGuesser::startNewGame(uint length)
 {
@@ -88,13 +94,13 @@ void SmartGuesser::startNewGame(uint length)
     _length = length;
     p = length;
 
-    comb = pow(m, p); // 6^4 possibilities
+    long len = pow(m, p); // 6^4 possibilities
 
     // Initialization of possibilities
-     active = new bool[comb]; // array of booleans to exclude in next search
-    b = new long[comb];
-    initArrayFromZero();
-    for (int i = 0; i < comb; i++)
+     active = new bool[len]; // array of booleans to exclude in next search
+    b = new long[len];
+    initArrayFromZero(b, len, m);
+    for (int i = 0; i < len; i++)
     {
         active[i] = 1;
     }
@@ -106,12 +112,12 @@ void SmartGuesser::learn(string reply)
 
     int responsePegs = ((int)reply[0] - 48) * 10;
     responsePegs += (int)reply[2] - 48;
-    excludeNumbersWithSameCode(stol(_guess), responsePegs);
+    excludeNumbersWithSameCode(stol(_guess), responsePegs, b, pow(m, p), active, p);
 }
 
 // other functions
 
-// long SmartGuesser::min(long a, long b) { return a < b ? a : b; }
+long SmartGuesser::min(long a, long b) { return a < b ? a : b; }
 
 // int SmartGuesser::inputCP(int def)
 // {
@@ -140,20 +146,20 @@ void SmartGuesser::learn(string reply)
 //     return def;
 // }
 
-// bool SmartGuesser::handleInput(long input, int m, int p)
-// {
-//     /// Return true if proper number is being input (base m, length p)
-//     for (int i = 0; i < p; ++i)
-//     {
-//         long num = input / pow(10, p - i - 1);
-//         if (num >= m || num < 0)
-//             return 0;
-//         input -= num * pow(10, p - i - 1);
-//     }
-//     return 1;
-// }
+bool SmartGuesser::handleInput(long input, int m, int p)
+{
+    /// Return true if proper number is being input (base m, length p)
+    for (int i = 0; i < p; ++i)
+    {
+        long num = input / pow(10, p - i - 1);
+        if (num >= m || num < 0)
+            return 0;
+        input -= num * pow(10, p - i - 1);
+    }
+    return 1;
+}
 
-int SmartGuesser::testCode(long guess, long code)
+int SmartGuesser::testCode(long guess, long code, int p)
 {
     /// Test code for # of black and white pegs
     /// Returns # of black and white pegs
@@ -220,54 +226,54 @@ long SmartGuesser::composeNum(long j, int m)
     return r;
 }
 
-// long SmartGuesser::countActive(bool  *active, long length)
-// {
-//     long count = 0;
-//     for (long i = 0; i < length; ++i)
-//     {
-//         if (active[i])
-//             count++;
-//     }
-//     return count;
-//     // return active.size();
-// }
+long SmartGuesser::countActive(bool  *active, long length)
+{
+    long count = 0;
+    for (long i = 0; i < length; ++i)
+    {
+        if (active[i])
+            count++;
+    }
+    return count;
+    // return active.size();
+}
 
-void SmartGuesser::initArrayFromZero( )
+void SmartGuesser::initArrayFromZero(long *a, long length, int m)
 {
     /// Recursively initialize array [{0..m},{1..m},{2..m} ... {n..m}]
-    for (long i = 0; i < comb; i++)
+    for (long i = 0; i < length; i++)
     {
-        b[i] = composeNum(i, m);
+        a[i] = composeNum(i, m);
     }
 }
 
-// long SmartGuesser::testNumber(long testingNumber, long *b, long length, bool *active, int p)
-// {
-//     /// Find maximum score of number to test:
-//     /// https://programmingpraxis.com/2009/11/20/master-mind-part-2/
-//     long maximum = 0;
-//     for (long i = 0; i < p * 10; i++)
-//     {
-//         long counter = 0;
-//         bool f = (composeNum(i, 5) / 10 + composeNum(i, 5)) < 5;
-//         for (long j = 0; j < length; j++)
-//         {
-//             if (active[j] && f)
-//             {
-//                 if (testCode(testingNumber, b[j], p) == composeNum(i, 5))
-//                 {
-//                     counter++;
-//                 }
-//             }
-//         }
-//         if (counter > maximum)
-//         {
-//             maximum = counter;
-//         }
-//     }
+long SmartGuesser::testNumber(long testingNumber, long *b, long length, bool *active, int p)
+{
+    /// Find maximum score of number to test:
+    /// https://programmingpraxis.com/2009/11/20/master-mind-part-2/
+    long maximum = 0;
+    for (long i = 0; i < p * 10; i++)
+    {
+        long counter = 0;
+        bool f = (composeNum(i, 5) / 10 + composeNum(i, 5)) < 5;
+        for (long j = 0; j < length; j++)
+        {
+            if (active[j] && f)
+            {
+                if (testCode(testingNumber, b[j], p) == composeNum(i, 5))
+                {
+                    counter++;
+                }
+            }
+        }
+        if (counter > maximum)
+        {
+            maximum = counter;
+        }
+    }
 
-//     return maximum;
-// }
+    return maximum;
+}
 
 // void setNumbersWithSameCodeActive(long number, long code, long *b, long length,
 //                                   bool *active, int p) {
@@ -281,74 +287,67 @@ void SmartGuesser::initArrayFromZero( )
 //   }
 // }
 
-void SmartGuesser::excludeNumbersWithSameCode(long number, long code)
+void SmartGuesser::excludeNumbersWithSameCode(long number, long code, long *b, long length,
+                                              bool *active, int p)
 {
     /// For each number with not the same # of blacks and whites set "not active"
-    for (long i = 0; i < comb; ++i)
+    for (long i = 0; i < length; ++i)
     {
-        if (active[i] && (testCode(b[i], number) != code))
+        if (active[i] && (testCode(b[i], number, p) != code))
         {
             active[i] = 0;
         }
     }
 }
 
-long SmartGuesser::firstActive()
+long SmartGuesser::firstActive(long *b, long length, bool *active, int p)
 {
     /// This does what you think it does
-    // long minimum = -1;
-    // long minimumNumber=-1;
-    for (long i = 0; i < comb; ++i)
+    long minimum = -1;
+    long minimumNumber = -1;
+    for (long i = 0; i < length; ++i)
     {
         if (active[i])
         {
             //minimum = testNumber(b[i], b, pow(m,p), active, p);
-            // minimumNumber = b[i];
-            // return minimumNumber;
-            return b[i]; 
+            minimumNumber = b[i];
+            return minimumNumber;
         }
     }
-    return 6;
+    return minimumNumber;
 }
 
-// long SmartGuesser::minimax(long *b, long length, bool *active, int p)
-// {
-//     /// Minimax explanation:
-//     /// https://programmingpraxis.com/2009/11/20/master-mind-part-2/
+long SmartGuesser::minimax(long *b, long length, bool *active, int p)
+{
+    /// Minimax explanation:
+    /// https://programmingpraxis.com/2009/11/20/master-mind-part-2/
 
-//     // Set initial minimum
-//         cout<<"delay1"<<endl;
+    // Set initial minimum
+    long minimumNumber = firstActive(b, pow(m,p), active, p);
+    long minimum = testNumber(minimumNumber, b, pow(m,p), active, p);
 
-//     long minimumNumber = firstActive(b, pow(m,p), active, p);
-//         cout<<"delay2"<<endl;
-
-//     long minimum = testNumber(minimumNumber, b, pow(m,p), active, p);
-//         cout<<"delay3"<<endl;
-
-//     // Apply minimax
-//     for (long j = 0; j < length; j++)
-//     {
-//         if (!active[j])
-//         {
-//             continue;
-//         }
-//         else
-//         {
-//             long localMaximum = testNumber(b[j], b, pow(m,p), active, p);
-//                 cout<<"delay4"<<endl;
-
-//             if (localMaximum < minimum)
-//             {
-//                 minimum = localMaximum;
-//                 minimumNumber = b[j];
-//             }
-//             //   printf("\r    [%li] minimum: %li minimax: %li", j, minimum, minimumNumber);
-//         }
-//     }
+    // Apply minimax
+    for (long j = 0; j < length; j++)
+    {
+        if (!active[j])
+        {
+            continue;
+        }
+        else
+        {
+            long localMaximum = testNumber(b[j], b, pow(m,p), active, p);
+            if (localMaximum < minimum)
+            {
+                minimum = localMaximum;
+                minimumNumber = b[j];
+            }
+            //   printf("\r    [%li] minimum: %li minimax: %li", j, minimum, minimumNumber);
+        }
+    }
 
     //   printf("\n");
-//     return minimumNumber;
-// }
+    return minimumNumber;
+}
 long SmartGuesser::pow(int a, int b) {
   /// Power for integers
   if (b == 0) {
