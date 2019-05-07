@@ -21,13 +21,9 @@ SmartGuesser::SmartGuesser()
 // basic finction
 string SmartGuesser::guess()
 {
-    // According to the Donald Knuth's 5-steps algorithm, first guess should be
-    // 1122 (or 0011 in our system) for 4 places,
-    // which is minimax number at start. You can change it to number you want or
-    // to look for it dynamically.
-    // So we generate first code according to number of places,
-    // e.g. 111222 for p=6 (000111 in our system)
+    
     long teste = 0;
+    
     if (start)
     {
         _guess = "";
@@ -39,7 +35,7 @@ string SmartGuesser::guess()
                 _guess = _guess + '1';
         }
     }
-    
+
     if (start)
     {
         start = false;
@@ -47,22 +43,26 @@ string SmartGuesser::guess()
     }
 
     int r = responsePegs;
+   
     if (r == p * 10)
     {
         return "";
     }
+
    
     long newTeste;
     if (countActive(active, pow(m,p)) > MINIMAX_TURNOFF)
     {
         // Apply the minimax rule to select next code to test
         //   printf("    Applying minimax...\n");
+        cout << " delay1"<<endl;
         newTeste = minimax(b, pow(m,p), active, p);
     }
     else
     {
-        // Turn off minimax for big numbers to inrease speed,
+        // Turn off minimax for big numbers to increase speed,
         // but will need more steps
+        cout << " delay2"<<endl;
         newTeste = firstActive(b, pow(m,p), active, p);
     }
 
@@ -72,13 +72,20 @@ string SmartGuesser::guess()
         //          "author\nExiting immediately\n");
         return "8";
     }
-
+    
     teste = newTeste;
     _guess = to_string(teste);
+    complete(_guess);
     return _guess;
     //   }
 }
+void SmartGuesser::complete(string guess)
+{
+    for(int i=guess.length();i<p;i++){
+        _guess="0"+guess;
+    }
 
+}
 void SmartGuesser::startNewGame(uint length)
 {
     start = true;
@@ -88,7 +95,7 @@ void SmartGuesser::startNewGame(uint length)
     long len = pow(m, p); // 6^4 possibilities
 
     // Initialization of possibilities
-    active = new bool[len]; // array of booleans to exclude in next search
+     active = new bool[len]; // array of booleans to exclude in next search
     b = new long[len];
     initArrayFromZero(b, len, m);
     for (int i = 0; i < len; i++)
@@ -110,32 +117,32 @@ void SmartGuesser::learn(string reply)
 
 long SmartGuesser::min(long a, long b) { return a < b ? a : b; }
 
-int SmartGuesser::inputCP(int def)
-{
-    /// Handle input of number from 2 to 10
-    // TODO: deal with scanf() overflow
-    int n = 0, s = 0;
-    while (1)
-    {
-        s = scanf("%i", &n);
-        if (n > 0 && n < 11)
-        {
-            return n;
-        }
-        else if (s)
-        {
-            //   printf("[!] Please enter number from 2 to 10\n");
-        }
-        else
-        {
-            //   printf("[!] Your input may have caused overflow. Using default number "
-            //          "(%i)\n",
-            //          def);
-            break;
-        }
-    }
-    return def;
-}
+// int SmartGuesser::inputCP(int def)
+// {
+//     /// Handle input of number from 2 to 10
+//     // TODO: deal with scanf() overflow
+//     int n = 0, s = 0;
+//     while (1)
+//     {
+//         s = scanf("%i", &n);
+//         if (n > 0 && n < 11)
+//         {
+//             return n;
+//         }
+//         else if (s)
+//         {
+//             //   printf("[!] Please enter number from 2 to 10\n");
+//         }
+//         else
+//         {
+//             //   printf("[!] Your input may have caused overflow. Using default number "
+//             //          "(%i)\n",
+//             //          def);
+//             break;
+//         }
+//     }
+//     return def;
+// }
 
 bool SmartGuesser::handleInput(long input, int m, int p)
 {
@@ -217,7 +224,7 @@ long SmartGuesser::composeNum(long j, int m)
     return r;
 }
 
-long SmartGuesser::countActive(bool *active, long length)
+long SmartGuesser::countActive(bool  *active, long length)
 {
     long count = 0;
     for (long i = 0; i < length; ++i)
@@ -226,6 +233,7 @@ long SmartGuesser::countActive(bool *active, long length)
             count++;
     }
     return count;
+    // return active.size();
 }
 
 void SmartGuesser::initArrayFromZero(long *a, long length, int m)
@@ -299,7 +307,7 @@ long SmartGuesser::firstActive(long *b, long length, bool *active, int p)
     {
         if (active[i])
         {
-            minimum = testNumber(b[i], b, pow(m,p), active, p);
+            //minimum = testNumber(b[i], b, pow(m,p), active, p);
             minimumNumber = b[i];
             return minimumNumber;
         }
