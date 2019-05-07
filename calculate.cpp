@@ -28,7 +28,6 @@ string calculateBullAndPgia(string choice, string guess){
         }
     }
     string bullAndPgia = to_string(bull) + "," + to_string(pgia);
-                cout << bullAndPgia << endl;
 
     return bullAndPgia;
 }
