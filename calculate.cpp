@@ -22,8 +22,8 @@ string calculateBullAndPgia(string choice, string guess){
     }
     for (int i = 0; i < guess.length(); i++)
     {
-        if (choice.find(guess[i]) != string::npos)
-            pgia++;            choice[i] = 't';
+        if (choice.find(guess[i]) != string::npos){
+            pgia++;            choice[i] = 't';}
 
     }
     string bullAndPgia = to_string(bull) + "," + to_string(pgia);
