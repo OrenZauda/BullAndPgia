@@ -32,12 +32,22 @@ int main() {
 		testcase.setname("Calculate bull and pgia")
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","1234"), "4,0")      // 4 bull, 0 pgia
 		.CHECK_OUTPUT(calculateBullAndPgia("1234","4321"), "0,4")      // 0 bull, 4 pgia
-		.CHECK_OUTPUT(calculateBullAndPgia("1234","1000"), "1,0") //our test
-		.CHECK_OUTPUT(calculateBullAndPgia("1234","1111"), "1,0")
-		.CHECK_OUTPUT(calculateBullAndPgia("1234","1984"), "2,0")
-		.CHECK_OUTPUT(calculateBullAndPgia("1234","29843"), "0,2")
-		.CHECK_OUTPUT(calculateBullAndPgia("1234","1984"), "2,0")
-		.CHECK_OUTPUT(calculateBullAndPgia("9999","1984"), "1,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("5268","5973"), "1,0") //our test
+		.CHECK_OUTPUT(calculateBullAndPgia("1543","1111"), "1,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("1783","1984"), "2,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("5831","2983"), "0,2")
+		.CHECK_OUTPUT(calculateBullAndPgia("0174","8574"), "2,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("7531","4239"), "1,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("3","3"), "1,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("5","4"), "0,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("42","24"), "0,2")
+		.CHECK_OUTPUT(calculateBullAndPgia("86","85"), "1,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("22","22"), "2,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("528","528"), "3,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("205","207"), "2,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("639","536"), "1,1")
+		.CHECK_OUTPUT(calculateBullAndPgia("147","147"), "3,0")
+		.CHECK_OUTPUT(calculateBullAndPgia("739","349"), "1,1")
 		;
 
 		testcase.setname("Play with dummy choosers and guessers")
