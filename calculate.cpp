@@ -7,6 +7,8 @@ using std::string;
 
 namespace bullpgia{
 string calculateBullAndPgia(string choice, string guess){
+     cout << "choice "<<choice << endl;
+     cout << "guess "<<guess << endl;
      int bull = 0, pgia = 0;
     for (int i = 0; i < choice.length(); i++)
     {
