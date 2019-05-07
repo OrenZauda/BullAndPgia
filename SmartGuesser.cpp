@@ -53,7 +53,7 @@ string SmartGuesser::guess()
     }
    
     long newTeste;
-    if (countActive(active, pow(m,p)) < MINIMAX_TURNOFF)
+    if (countActive(active, pow(m,p)) > MINIMAX_TURNOFF)
     {
         // Apply the minimax rule to select next code to test
         //   printf("    Applying minimax...\n");
