@@ -44,6 +44,7 @@ public:
     long firstActive();
     long pow(int a, int b);
     void complete(string guess);
+    void setNumbersWithSameCodeActive(long number, long code);
     
 };
 }; // namespace bullpgia
