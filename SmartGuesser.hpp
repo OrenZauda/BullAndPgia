@@ -2,6 +2,7 @@
 #include <string>
 #include "Guesser.hpp"
 #include "calculate.hpp"
+#include <list>
 using namespace std;
 using std::string;
 namespace bullpgia
@@ -19,7 +20,7 @@ public:
     int p;
     int m = 10; 
     int responsePegs ;
-    bool* active; 
+   bool *active; 
     long *b;
 
     // constuctors
@@ -51,6 +52,7 @@ public:
     long firstActive(long *b, long length, bool *active, int p);
     long minimax(long *b, long length, bool *active, int p);
     long pow(int a, int b);
+    void complete(string guess);
     // void printResult(long result);
 };
 }; // namespace bullpgia
