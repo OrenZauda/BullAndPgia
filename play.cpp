@@ -14,7 +14,7 @@ namespace bullpgia {
 	uint play(Chooser& chooser, Guesser& guesser, uint length, uint maxTurns) {
 		const uint TECHNICAL_VICTORY_TO_GUESSER = 0;
 		const uint TECHNICAL_VICTORY_TO_CHOOSER = maxTurns+1;
-
+	h
 		string choice = chooser.choose(length);
 		if (choice.length()!=length)       // Illegal choice
 			return TECHNICAL_VICTORY_TO_GUESSER;
