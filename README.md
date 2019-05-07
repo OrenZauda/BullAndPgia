@@ -23,10 +23,11 @@ numbers are not allowed to be repeated and the number will not start at 0. For e
       but is located in a different position.
 
 ##Run example in bash :
-      -for demostration run -
-         make deme && ./demo
+
+   -for demostration run -
+       make deme && ./demo
       
-      -for test run :
+   -for test run :
          make test && ./test 
       
 ### Our mentor and sources
