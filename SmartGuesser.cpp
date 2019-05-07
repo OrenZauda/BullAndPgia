@@ -82,8 +82,9 @@ string SmartGuesser::guess()
 }
 void SmartGuesser::complete(string guess)
 { cout << "p"<<p<<endl;
+ string y="";
     for(int i=guess.length();i<p;i++){
-        string y="0"+y;
+        y="0"+y;
     }
     _guess=y+_guess;
 }
