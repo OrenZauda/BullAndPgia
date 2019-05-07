@@ -75,6 +75,8 @@ string SmartGuesser::guess()
     _guess = to_string(teste);
     cout << " ********"<<_guess<<endl;
     complete(_guess);
+     cout << " #########"<<_guess<<endl;
+
     return _guess;
     //   }
 }
