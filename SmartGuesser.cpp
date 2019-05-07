@@ -55,14 +55,12 @@ string SmartGuesser::guess()
     {
         // Apply the minimax rule to select next code to test
         //   printf("    Applying minimax...\n");
-        cout << " delay1"<<endl;
         newTeste = minimax(b, pow(m,p), active, p);
     }
     else
     {
         // Turn off minimax for big numbers to increase speed,
         // but will need more steps
-        cout << " delay2"<<endl;
         newTeste = firstActive(b, pow(m,p), active, p);
     }
 
