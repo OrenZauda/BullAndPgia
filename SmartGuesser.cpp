@@ -51,18 +51,18 @@ string SmartGuesser::guess()
 
    
     long newTeste;
-    if (countActive(active, pow(m,p)) > MINIMAX_TURNOFF)
-    {
+//     if (countActive(active, pow(m,p)) > MINIMAX_TURNOFF)
+//     {
         // Apply the minimax rule to select next code to test
         //   printf("    Applying minimax...\n");
-        newTeste = minimax(b, pow(m,p), active, p);
-    }
-    else
-    {
+//         newTeste = minimax(b, pow(m,p), active, p);
+//     }
+//     else
+//     {
         // Turn off minimax for big numbers to increase speed,
         // but will need more steps
         newTeste = firstActive(b, pow(m,p), active, p);
-    }
+//     }
 
 //     if (newTeste == teste)
 //     {
