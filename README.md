@@ -22,7 +22,13 @@ numbers are not allowed to be repeated and the number will not start at 0. For e
       - A situation in which one of the digits in the numeral number is the same as the number in the original number,
       but is located in a different position.
 
-
+##Run example in bash :
+      -for demostration run -
+         make deme && ./demo
+      
+      -for test run :
+         make test && ./test 
+      
 ### Our mentor and sources
 
 [Erel Segal-Halevi](https://github.com/erelsgl/ariel-cpp-5779) 
