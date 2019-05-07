@@ -17,7 +17,7 @@ public:
     
     // others
     int p;
-    int m = 3; 
+    int m = 10; 
     int responsePegs ;
     bool* active; 
     long *b;
