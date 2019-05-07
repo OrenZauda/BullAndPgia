@@ -24,11 +24,13 @@ numbers are not allowed to be repeated and the number will not start at 0. For e
 
 ##Run example in bash :
 
-   -for demostration run -
-       make deme && ./demo
+   -for demostration run :
+          
+      make deme && ./demo
       
    -for test run :
-         make test && ./test 
+    
+      make test && ./test 
       
 ### Our mentor and sources
 
