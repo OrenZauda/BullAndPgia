@@ -64,12 +64,12 @@ string SmartGuesser::guess()
         newTeste = firstActive(b, pow(m,p), active, p);
     }
 
-    if (newTeste == teste)
-    {
-        //   printf("\n[E] Opps, got into an infinite loop, please report to "
-        //          "author\nExiting immediately\n");
-        return "8";
-    }
+//     if (newTeste == teste)
+//     {
+//         //   printf("\n[E] Opps, got into an infinite loop, please report to "
+//         //          "author\nExiting immediately\n");
+//         return "8";
+//     }
     
     teste = newTeste;
     _guess = to_string(teste);
