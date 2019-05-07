@@ -73,8 +73,8 @@ string SmartGuesser::guess()
     
     teste = newTeste;
     _guess = to_string(teste);
-    complete(_guess);
     cout << " ********"<<_guess<<endl;
+    complete(_guess);
     return _guess;
     //   }
 }
