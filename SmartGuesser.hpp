@@ -16,6 +16,7 @@ public:
     bool start=true;
     
     // others
+    long combinations;
     int p;
     int m = 10; 
     int responsePegs ;
@@ -31,27 +32,18 @@ public:
     string guess() override;
     void startNewGame(uint length) override;
     void learn(string reply) override;
-    string correctstring (int x,uint len);
    
    
    
     // functions
     long min(long a, long b);
-    int inputCP(int def);
-    bool handleInput(long input, int m, int p);
-    int testCode(long guess, long code, int p);
+    int testCode(long guess, long code);
     long composeNum(long j, int m);
-    long countActive(bool *active, long length);
-    void initArrayFromZero(long *a, long length, int m);
-    long testNumber(long testingNumber, long *b, long length, bool *active, int p);
-    void setNumbersWithSameCodeActive(long number, long code, long *b, long length,
-                                  bool *active, int p);
-   void excludeNumbersWithSameCode(long number, long code, long *b, long length,
-                                bool *active, int p);
-    long firstActive(long *b, long length, bool *active, int p);
-    long minimax(long *b, long length, bool *active, int p);
+    void initArrayFromZero();
+   void excludeNumbersWithSameCode(long number, long code);
+    long firstActive();
     long pow(int a, int b);
     void complete(string guess);
-    // void printResult(long result);
+    
 };
 }; // namespace bullpgia
