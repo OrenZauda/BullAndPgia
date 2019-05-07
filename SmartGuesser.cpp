@@ -22,7 +22,7 @@ SmartGuesser::SmartGuesser()
 string SmartGuesser::guess()
 {
     
-    long teste = 0;
+    long teste = -1;
     
     if (start)
     {
@@ -51,42 +51,38 @@ string SmartGuesser::guess()
 
    
     long newTeste;
-//     if (countActive(active, pow(m,p)) > MINIMAX_TURNOFF)
-//     {
-        // Apply the minimax rule to select next code to test
-        //   printf("    Applying minimax...\n");
-//         newTeste = minimax(b, pow(m,p), active, p);
-//     }
-//     else
-//     {
+    // if (countActive(active, pow(m,p)) < MINIMAX_TURNOFF)
+    // {
+    //     // Apply the minimax rule to select next code to test
+    //     //   printf("    Applying minimax...\n");
+    //     newTeste = minimax(b, pow(m,p), active, p);
+    // }
+    // else
+    // {
         // Turn off minimax for big numbers to increase speed,
         // but will need more steps
         newTeste = firstActive(b, pow(m,p), active, p);
-//     }
+    // }
 
-//     if (newTeste == teste)
-//     {
-//         //   printf("\n[E] Opps, got into an infinite loop, please report to "
-//         //          "author\nExiting immediately\n");
-//         return "8";
-//     }
+    if (newTeste == teste)
+    {
+        //   printf("\n[E] Opps, got into an infinite loop, please report to "
+        //          "author\nExiting immediately\n");
+        return "8";
+    }
     
     teste = newTeste;
     _guess = to_string(teste);
-    cout << " ********"<<_guess<<endl;
     complete(_guess);
-     cout << " #########"<<_guess<<endl;
-
     return _guess;
     //   }
 }
 void SmartGuesser::complete(string guess)
-{ cout << "p"<<p<<endl;
- string y="";
+{
     for(int i=guess.length();i<p;i++){
-        y="0"+y;
+        _guess="0"+guess;
     }
-    _guess=y+_guess;
+
 }
 void SmartGuesser::startNewGame(uint length)
 {
@@ -323,8 +319,13 @@ long SmartGuesser::minimax(long *b, long length, bool *active, int p)
     /// https://programmingpraxis.com/2009/11/20/master-mind-part-2/
 
     // Set initial minimum
+        cout<<"delay1"<<endl;
+
     long minimumNumber = firstActive(b, pow(m,p), active, p);
+        cout<<"delay2"<<endl;
+
     long minimum = testNumber(minimumNumber, b, pow(m,p), active, p);
+        cout<<"delay3"<<endl;
 
     // Apply minimax
     for (long j = 0; j < length; j++)
@@ -336,6 +337,8 @@ long SmartGuesser::minimax(long *b, long length, bool *active, int p)
         else
         {
             long localMaximum = testNumber(b[j], b, pow(m,p), active, p);
+                cout<<"delay4"<<endl;
+
             if (localMaximum < minimum)
             {
                 minimum = localMaximum;
