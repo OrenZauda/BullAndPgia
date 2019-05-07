@@ -37,6 +37,7 @@ string SmartGuesser::guess()
             else
                 _guess = _guess + '1';
         }
+       
         start = false;
         return _guess;
     }
@@ -78,7 +79,21 @@ void SmartGuesser::learn(string reply)
 // exclude the bad guesses, according the reply
     int responsePegs = ((int)reply[0] - 48) * 10;
     responsePegs += (int)reply[2] - 48;
-    excludeNumbersWithSameCode(stol(_guess), responsePegs);
+    if(start)
+        setNumbersWithSameCodeActive(stol(_guess), responsePegs);
+    else
+        excludeNumbersWithSameCode(stol(_guess), responsePegs);
+}
+
+void SmartGuesser::setNumbersWithSameCodeActive(long number, long code) {
+  /// For each number with the same # of blacks and whites set "active"
+  for (long i = 0; i < combinations; ++i) {
+    if (testCode(b[i], number) == code) {
+      active[i] = 1;
+    } else {
+      active[i] = 0;
+    }
+  }
 }
 
 //////////////////////////////// other functions///////////////////////////////////////////
@@ -145,6 +160,7 @@ long SmartGuesser::composeNum(long j, int m)
 
     /// Translate number j from decimal into a numeral system with base m
     long r = j % m;
+
     long b = j / m;
     int d = 1;
     while (b != 0)
