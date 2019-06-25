@@ -34,7 +34,8 @@ numbers are not allowed to be repeated and the number will not start at 0. For e
       
 ### Our mentor: 
 
-[Erel Segal-Halevi](https://github.com/erelsgl/ariel-cpp-5779) 
+[Erel Segal-Halevi](https://github.com/erelsgl/ariel-cpp-5779)
 
-###Source :
+### Source:
+
 [Bulls and Cows](https://en.wikipedia.org/wiki/Bulls_and_Cows)
