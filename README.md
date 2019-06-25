@@ -8,21 +8,15 @@ our task is to write automatic agents for a game Bull's Eye.
 
 ## Bulls and Cows rules
 
-Its a game for two players. The game is based on guessing and cracking. 
-At the beginning of the game each player chooses a number of digits, and the purpose of the game of the game is to crack the opponent's code.
+the game it's for two players , "the guesser and "the chooser" ,the chooser write a 4-digit secret number. 
+Then, the geusser try to guess chooser's number who gives the number of matches. 
+If the matching digits are in their right positions, they are "bulls", if in different positions, they are "cows". 
 
-### The progress of the game
+For Example:
 
-At the beginning of the game, each player chooses a number of several digits. When a four-digit number is used, 
-numbers are not allowed to be repeated and the number will not start at 0. For example, 1234 is a valid number, 1123 and 0123 are invalid.
-
-**What is Bulls and Cows**
-   - Bulls
-     - A situation in which one of the digits in the numeral number is the same as the number in the original number,
-     and is positioned correctly.
-   - Cows
-      - A situation in which one of the digits in the numeral number is the same as the number in the original number,
-      but is located in a different position.
+Secret number: 4271
+the guesser try: 1234
+Answer: 1 bull and 2 cows. (The bull is "2", the cows are "4" and "1").
 
 ## Run example in bash :
 
