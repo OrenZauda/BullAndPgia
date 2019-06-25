@@ -1,4 +1,6 @@
-Authors: Avichay Avtai Nega, [Omer Hadida](https://github.com/2MarShmello2), [Oren Zauda](https://github.com/OrenZauda)
+# Authors: 
+Avichay Avtai Nega, [Omer Hadida](https://github.com/2MarShmello2), [Oren Zauda](https://github.com/OrenZauda)
+
 # BullAndPgia
 
 In this task we will learn about a design model called "strategy," which is one of the main uses of the inheritance mechanism.
