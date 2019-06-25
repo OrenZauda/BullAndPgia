@@ -32,8 +32,9 @@ numbers are not allowed to be repeated and the number will not start at 0. For e
     
       make test && ./test 
       
-### Our mentor and sources
+### Our mentor: 
 
 [Erel Segal-Halevi](https://github.com/erelsgl/ariel-cpp-5779) 
 
+###Source :
 [Bulls and Cows](https://en.wikipedia.org/wiki/Bulls_and_Cows)
