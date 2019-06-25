@@ -8,7 +8,7 @@ our task is to write automatic agents for a game Bull's Eye.
 
 ## Bulls and Cows rules
 
-the game it's for two players , "the guesser and "the chooser" ,
+the game it's for two players , "the guesser" and "the chooser" ,
 the chooser write a 4-digit secret number. 
 Then, the geusser try to guess chooser's number who gives the number of matches. 
 If the matching digits are in their right positions, they are "bulls", 
