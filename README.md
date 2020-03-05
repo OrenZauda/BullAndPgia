@@ -1,5 +1,5 @@
 ### Authors: 
-Avichay Avtai Nega, [Omer Hadida](https://github.com/2MarShmello2), [Oren Zauda](https://github.com/OrenZauda)
+Oren Zauda, [Avichay Nega](https://github.com/avichaynega), [Omer Hadida](https://github.com/2MarShmello2), 
 
 # BullAndPgia
 
