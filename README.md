@@ -34,6 +34,6 @@ Answer: 1 bull and 2 cows. (The bull is "2", the cows are "4" and "1").
 
 [Erel Segal-Halevi](https://github.com/erelsgl/ariel-cpp-5779)
 
-### Source:
+### Read more about game:
 
 [Bulls and Cows](https://en.wikipedia.org/wiki/Bulls_and_Cows)
